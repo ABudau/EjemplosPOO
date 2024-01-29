@@ -81,18 +81,35 @@ public class Producto {
 	 */
 	
 	public Valoracion[]getValoracionesFiltradas(int valor){
-		Valoracion []valoraciones = new Valoracion[getValoraciones().length];//creo un array auxiliar con la extensión del array que contiene las valoraciones
+		int contador;//declaro un contador
 		int j=0;//declaro un contador
+		
+		contador = contarValores(valor);
+//		Valoracion []valoraciones = new Valoracion[getValoraciones().length];//creo un array auxiliar con la extensión del array que contiene las valoraciones
+		Valoracion []valoracionesFiltradas = new Valoracion[contador];
+		
 		for (int i = 0; i < valoraciones.length; i++) {//declaro un bucle para recorrer las posiciones del array.
 			if (getValoraciones()[i]!=null) {//si las posiciones no contienen un valor null(es decir si existe el objeto) 
 				if (getValoraciones()[i].getValor()==valor) {//compruebo el valor de la posición
-					valoraciones[j]=getValoraciones()[i];//si el valor coincide introduzco en el array auxiliar
-														//la valoración y aumento el contador j para pasar a la siguiente posición
+					valoracionesFiltradas[j]=getValoraciones()[i];//si el valor coincide introduzco en el array auxiliar
+											//la valoración y aumento el contador j para pasar a la siguiente posición
 					j++;
 				}
 			}	
 		}
-		return valoraciones;//devuelvo el array auxiliar con las valoraciones filtradas
+		return valoracionesFiltradas;//devuelvo el array auxiliar con las valoraciones filtradas
+	}
+
+	private int contarValores(int valor) {
+		int contador=0;
+		for (int i = 0; i < valoraciones.length; i++) {
+			if (getValoraciones()[i]!=null) {
+				if (getValoraciones()[i].getValor()==valor) {
+					contador++;
+				}
+			}
+		}
+		return contador;
 	}
 	
 	
